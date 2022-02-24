@@ -57,4 +57,4 @@ def print_matrix(wordList):
         i += 1
 if __name__ == '__main__':
   print_matrix(["DELTA","ALPHA","MACRO","SPARE","NOPED","BREAD"])
-
+  
