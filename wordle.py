@@ -53,8 +53,7 @@ def print_matrix(wordList):
             j += 1
         print(" | ")
         #print("")
-        
+        #Echo
         i += 1
 if __name__ == '__main__':
   print_matrix(["DELTA","ALPHA","MACRO","SPARE","NOPED","BREAD"])
-  
