@@ -42,26 +42,28 @@ def terminal():
             response = input('Enter next guess: ').strip()
             i = 0
             while (i < len(list_of_words)):
-                if (response == list_of_words[i]):
+                if (response.upper() == list_of_words[i]):
                     validInput = True
                 i += 1
             if (validInput == False):
                 print("Not in word list")
-        wordList.append(response)
+        wordList.append(response.upper())
         attempts += 1
-        if (response == answer):
+        if (response.upper() == answer):
             correct = True
             
 
 
     print_matrix(wordList,answer)
-    if (response == answer):
+    if (correct == True):
         
             print("Great!")
     else:
         print("Answer: " + answer)
 
 def print_matrix(wordList,ans):
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")  
+    print(" W   O   R   D   L   E") 
     i = 0
     extra = 0
     while (len(wordList) != 6):
@@ -88,14 +90,21 @@ def print_matrix(wordList,ans):
             else:
                 print(")",end=' ')
             j += 1
-        print(" |")
+        print("|")
         i += 1
+    k = 0
+    #print(ans)
+    getLetterList(ans,wordList)
     while (extra != 0):
         wordList.pop()
         extra -= 1
-    #  print(wordList)
 
-def stringComp(x,y):    
+    #getLetterList(wordList,ans)
+    
+
+
+
+def stringComp(x,y): 
     ans = list(x)
     word = list(y)
     comp = []
@@ -115,12 +124,48 @@ def stringComp(x,y):
     # print(comp)
     return comp
 
+def getLetterList(x,y):    
+    ans = list(x)
+    word = y
+    green = []
+    yellow = []
+    grey = []
+    
+    i = 0
+    while (i < len(y)):
+        j = 0
+        while (j < 5):
+            exist = False
+            k = 0
+            if (word[i][j] == ans[j]) and ((word[i][j] in green) == False):
+                green.append(word[i][j])
+                exist = True
+            else:
+                while (k < 5):
+                    
+                    if (word[i][j] == ans[k]) and ((word[i][j] in yellow) == False) and ((word[i][j] in green) == False):
+                        yellow.append(word[i][j])
+                        exist = True
+                    k += 1
+            
+            if (exist != True) and (word[i] != "     ") and ((word[i][j] in grey) == False):
+                
+                # print(ans)
+                grey.append(word[i][j])
+            j += 1
+        i += 1        
+    print("Green:  " + str(sorted(green)))
+    print("Yellow: " + str(sorted(yellow)))
+    print("Grey:   " + str(sorted(grey)))      
+       
+    
 
 if __name__ == '__main__':
   #print_matrix(["DELTA","ALPHA","MACRO","SPARE","NOPED","BREAD"])
    terminal()
     # print_matrix(["CABIN","BREAK","BLACK","BLOKE"]  , "BLOKE")
 
+#  W   O   R   D   L   E
 # | (C) (A) {B} (I) (N) |
 # | [B] (R) {E} (A) {K} |
 # | [B] [L] (A) (C) {K} |
