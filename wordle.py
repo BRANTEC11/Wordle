@@ -1,4 +1,5 @@
 import random
+from os import system, name
 def divider(x,y):
     with open(x,'r') as f:
             listl=[]
@@ -24,6 +25,17 @@ def divider(x,y):
             only.append(x[i])
         i = i + 1
     return only
+
+def clear():
+  
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+  
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
+
 def terminal():
     wordList = []
     correct = False
@@ -33,7 +45,7 @@ def terminal():
     i = 0
     
     answerIndex = random.randint(0,len(list_of_ans)-1)
-    answer = list_of_words[answerIndex]
+    answer = list_of_ans[answerIndex]
         
     while (attempts != 6) and (correct != True):
         print_matrix(wordList,answer)
@@ -62,8 +74,9 @@ def terminal():
         print("Answer: " + answer)
 
 def print_matrix(wordList,ans):
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")  
-    print(" W   O   R   D   L   E") 
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")  
+    clear()
+    print("[W] [O] [R] [D] [L] [E]") 
     i = 0
     extra = 0
     while (len(wordList) != 6):
@@ -138,6 +151,8 @@ def getLetterList(x,y):
             exist = False
             k = 0
             if (word[i][j] == ans[j]) and ((word[i][j] in green) == False):
+                if (word[i][j] in yellow):
+                    yellow.remove(word[i][j])
                 green.append(word[i][j])
                 exist = True
             else:
@@ -148,15 +163,15 @@ def getLetterList(x,y):
                         exist = True
                     k += 1
             
-            if (exist != True) and (word[i] != "     ") and ((word[i][j] in grey) == False):
+            if (exist != True) and (word[i] != "     ") and ((word[i][j] in grey) == False) and ((word[i][j] in yellow) == False) and ((word[i][j] in green) == False):
                 
                 # print(ans)
                 grey.append(word[i][j])
             j += 1
         i += 1        
-    print("Green:  " + str(sorted(green)))
-    print("Yellow: " + str(sorted(yellow)))
-    print("Grey:   " + str(sorted(grey)))      
+    print("[Green]:  " + str(sorted(green)))
+    print("{Yellow}: " + str(sorted(yellow)))
+    print("(Grey):   " + str(sorted(grey)))      
        
     
 
@@ -165,7 +180,7 @@ if __name__ == '__main__':
    terminal()
     # print_matrix(["CABIN","BREAK","BLACK","BLOKE"]  , "BLOKE")
 
-#  W   O   R   D   L   E
+# [W] [O] [R] [D] [L] [E]
 # | (C) (A) {B} (I) (N) |
 # | [B] (R) {E} (A) {K} |
 # | [B] [L] (A) (C) {K} |
