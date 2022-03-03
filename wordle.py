@@ -1,7 +1,10 @@
 import random
 from os import system, name
 def divider(x,y):
-    with open(x,'r') as f:
+    from os.path import dirname, join
+    current_dir = dirname(__file__)
+    file_path = join(current_dir, x)
+    with open(file_path,'r') as f:
             listl=[]
             for line in f:
                     strip_lines=line.strip()
